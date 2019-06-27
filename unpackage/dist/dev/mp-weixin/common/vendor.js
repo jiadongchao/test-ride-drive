@@ -1,16 +1,16 @@
 (global["webpackJsonp"] = global["webpackJsonp"] || []).push([["common/vendor"],{
 
-/***/ "../../../../wx-uni-code/test-ride-drive/main.js":
-/*!**********************************************!*\
-  !*** D:/wx-uni-code/test-ride-drive/main.js ***!
-  \**********************************************/
+/***/ "../../../../uni-app/main.js":
+/*!**************************!*\
+  !*** D:/uni-app/main.js ***!
+  \**************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createApp) {__webpack_require__(/*! uni-pages */ "../../../../wx-uni-code/test-ride-drive/pages.json");
+/* WEBPACK VAR INJECTION */(function(createApp) {__webpack_require__(/*! uni-pages */ "../../../../uni-app/pages.json");
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
-var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ "../../../../wx-uni-code/test-ride-drive/App.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
+var _App = _interopRequireDefault(__webpack_require__(/*! ./App */ "../../../../uni-app/App.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}
 
 _vue.default.config.productionTip = false;
 
@@ -24,32 +24,58 @@ createApp(app).$mount();
 
 /***/ }),
 
-/***/ "../../../../wx-uni-code/test-ride-drive/main.js?{\"page\":\"pages%2Findex%2Findex\"}":
-/*!*******************************************************************************!*\
-  !*** D:/wx-uni-code/test-ride-drive/main.js?{"page":"pages%2Findex%2Findex"} ***!
-  \*******************************************************************************/
+/***/ "../../../../uni-app/main.js?{\"page\":\"pages%2Findex%2Findex\"}":
+/*!***********************************************************!*\
+  !*** D:/uni-app/main.js?{"page":"pages%2Findex%2Findex"} ***!
+  \***********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../wx-uni-code/test-ride-drive/pages.json");
+/* WEBPACK VAR INJECTION */(function(createPage) {__webpack_require__(/*! uni-pages */ "../../../../uni-app/pages.json");
 
 var _vue = _interopRequireDefault(__webpack_require__(/*! vue */ "./node_modules/@dcloudio/vue-cli-plugin-uni/packages/mp-vue/dist/mp.runtime.esm.js"));
-var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/index/index.vue */ "../../../../wx-uni-code/test-ride-drive/pages/index/index.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+var _index = _interopRequireDefault(__webpack_require__(/*! ./pages/index/index.vue */ "../../../../uni-app/pages/index/index.vue"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 createPage(_index.default);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ "./node_modules/@dcloudio/uni-mp-weixin/dist/index.js")["createPage"]))
 
 /***/ }),
 
-/***/ "../../../../wx-uni-code/test-ride-drive/pages.json":
-/*!*************************************************!*\
-  !*** D:/wx-uni-code/test-ride-drive/pages.json ***!
-  \*************************************************/
+/***/ "../../../../uni-app/pages.json":
+/*!*****************************!*\
+  !*** D:/uni-app/pages.json ***!
+  \*****************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+/***/ }),
+
+/***/ "../../../../uni-app/static/const/api.js":
+/*!**************************************!*\
+  !*** D:/uni-app/static/const/api.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });exports.carList = exports.baseUrl = void 0;
+var baseUrl = "https://moby.xbo-tech.com";
+//获取试驾车列表
+exports.baseUrl = baseUrl;var carList = baseUrl + '/moby-mall/ttd/ttd/api/v1/car/carList';exports.carList = carList;
+
+/***/ }),
+
+/***/ "../../../../uni-app/static/img/noface.gif":
+/*!****************************************!*\
+  !*** D:/uni-app/static/img/noface.gif ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "data:image/gif;base64,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"
 
 /***/ }),
 
