@@ -1,36 +1,115 @@
 <template>
 	<view class="content">
-		<view class="carList">
-			<ul class="warp-car-ul" >
-				<li class="warp-car-ul-li" v-for="(item,index) in carListDate" :key="item.index" @click="carListClick(index)">
-					<div class="car-img-wrap">
-						<image class="car-img" :src="item.imageurl" v-if="item.imageurl" @error="setErrorImg" mode="aspectFit"></image>
-						<image class="car-img" :src="errSrc" v-else ></image>
-					</div>
-					<div class="des-model-wrap">
-						<span class="warp-car-ul-span">{{item.cartype}}</span>
-					</div>
+		<!-- header -->
+		<view class="header"><span>{{city}}</span><input class="search-input" confirm-type="search" placeholder="请输入商品名称" /></view>
+		<!-- banner -->
+		<view class="swiper-wrap">
+			<swiper class="swiperWrap" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration" :circular="circular">
+				<swiper-item  v-for="(item,index) in carListDate" :key="item.index" @click="carListClick(index)">
+						<view class="swiper-item">
+							<!-- <image class="car-img" :src="item.imageurl" v-if="item.imageurl" @error="setErrorImg" mode="aspectFit"></image -->
+							<!-- <image class="car-img" :src="errSrc" v-else ></image> -->
+							<image class="car-img" :src="carImg" v-if="item.imageurl" @error="aspectFit" mode="scaleToFill"></image>
+						</view>
+				</swiper-item>
+			</swiper>
+		</view>
+		<!--中间菜单 -->
+		<view>
+			<ul class="menu-ul">
+				<li class='menu-li' v-for="(item,index) in menus" :key="item.index" @click="menuClick(index)">
+					<view>
+						<image class="menu-icon" :src="item.icon" v-if="item.icon" mode="aspectFit"></image>
+						<view>{{item.name}}</view>
+					</view>
 				</li>
 			</ul>
 		</view>
+		<!-- goods -->
+		<view class="goosWrap">
+			
+		</view>
+		
 	</view>
 </template>
 
 <script>
-	import { carList } from '../../static/const/api.js'
+	import { carList,QQKey } from '../../static/const/api.js'
+	import QQMapWX from '../../static/libs/qqmap-wx-jssdk.min.js'
 	export default {
 		data() {
 			return {
-				scrollTop:0,
-				statu:'aaa',
+				city:"",
+				indicatorDots: true,
+				autoplay: false,
+				interval: 2000,
+				duration: 1000,
+				circular:true,
 				carListDate:[],
 				errSrc:require('../../static/img/noface.gif'),
+				carImg:require('../../static/img/car.jpg'),//测试图片
+				
+				menus:[
+					{
+						name:"在售新车",
+						icon:require('../../static/img/icon-menu/car.png'),
+					},{
+						name:"汽车保险",
+						icon:require('../../static/img/icon-menu/insurance.png'),
+					},{
+						name:"优选精品",
+						icon:require('../../static/img/icon-menu/googs.png'),
+					},
+				]
+				
 			}
 		},
 		onLoad() {
-			this.getTestCars()
+			this.getLocation();
+			this.getTestCars();
 		},
 		methods: {
+			//获取当前位置-并获取当前城市
+			getLocation(){
+				var _this = this;
+				var qqmapsdk = new QQMapWX({
+				      key: QQKey
+				});
+				let location={};
+				uni.getLocation({
+						type: 'wgs84',
+						success: function (res) {
+								location = {
+									latitude: res.latitude,
+									longitude: res.longitude
+								},
+								console.log(location)
+								 formSubmit()
+						}
+				});
+				
+				//根据坐标地址逆解析出当前所在城市
+				function formSubmit(e){
+					qqmapsdk.reverseGeocoder({
+						//位置坐标，默认获取当前位置，非必须参数
+						location:location,
+						//get_poi: 1, //是否返回周边POI列表：1.返回；0不返回(默认),非必须参数
+						success: function(res) {//成功后的回调
+							// console.log(res);
+							var res = res.result;
+							_this.city = res.ad_info.city;
+						},
+						fail: function(error) {
+							console.error(error);
+						},
+						complete: function(res) {
+							console.log(res);
+						}
+					})
+				}
+			},
+			
+		
 			//选取试驾车
 			carListClick (index,item) {
 				console.log(this.carListDate[index])
@@ -40,6 +119,9 @@
 				console.error('image发生error事件，携带值为' + e.detail.errMsg)
 			},
 			getTestCars(){
+				uni.showLoading({
+						title: '加载中'
+				});
 				uni.request({
 					url: carList, //仅为示例，并非真实接口地址。
 					method :'POST',
@@ -52,6 +134,7 @@
 					},
 					success: (res) => {
 							console.log(res.data);
+							uni.hideLoading()
 							this.carListDate = res.data.data;//请求接口的数据
 					}
 				});
@@ -62,89 +145,47 @@
 
 <style lang="scss">
 	.content {
-		.scroll-Y{
+		.header{
+			padding: 0 20upx;
+			display: flex;
+			align-items:center;
+			justify-content: space-between;
+			font-size:25upx; 
+			height: 100upx;
+			.search-input{
+				height: 62upx;
+				max-width: 620upx;
+				border-radius:31upx; 
+				background: #efefef;
+				padding:0 20upx;
+				box-sizing: border-box;
+				flex:1;
+				margin-left: 20upx;
+			}
+		}
+		.swiperWrap{
+			height: 385upx;
+			.swiper-item{
+				height: 100%;
+				width: 100%;
+				.car-img{
+					width:100%;
+				}
+			}
+		}
+		.menu-ul{
+			display: flex;
+			align-items:center;
 			height: 200upx;
-		}
-		.scroll-view-item{
-			height: 300upx;
-		}
-		.carList{
-			.warp-car-ul {
-				overflow: hidden;
-				padding-bottom: 60upx;
-				display: flex;
-				flex-wrap:wrap;
-				margin: 0 24upx;
-				justify-content:space-between;
-			}
-			.warp-car-ul-li {
-				width: 345upx;
-				float: left;
+			justify-content: space-around;
+			.menu-li{
 				text-align: center;
-				padding-bottom: 20upx;
-				margin-bottom: 10upx;
-				background-color: #fff;
-				border-radius: 10upx;
-				box-sizing: border-box;
-				border: 3upx solid transparent;
-				overflow: hidden;
-			}
-			.warp-car-ul-li:nth-child(2n+1) {
-				border: 3upx solid transparent;
-				box-sizing: border-box;
-				margin-right: 6upx;
-			}
-			.warp-car-ul-li:nth-child(2n+2) {
-				border: 3upx solid transparent;
-				box-sizing: border-box;
-			}
-			.warp-car-ul-li:active {
-				border: 3upx solid #61A5FF;
-			}
-			.warp-car-ul-li.active {
-				border: 3upx solid #61A5FF;
-			}
-			.car-img-wrap{
-				width: 100%;
-				height: 345upx;
-				display: flex;
-				align-items: center;
-				overflow: hidden;
-				box-sizing: border-box;
-				background-size:100% ;
-			}
-			.car-img {
-				width: 100%;
-				pointer-events: none;
-				vertical-align: sub;
-				align-items: center;
-			}
-			.des-model-wrap {
-				display: table-cell;
-				height: 90upx;
-				vertical-align: middle;
-				text-align: left;
-				color: #444d66;
-				width: 100%;
-				overflow: hidden;
-			}
-			.warp-car-ul-span {
-				width: 100%;
-				line-height: 1.7 !important;
-				box-sizing: border-box !important;
-				display: -webkit-box !important;
-				word-break: break-all !important;
-				-webkit-box-orient: vertical !important;
-				text-overflow: ellipsis !important;
-				-webkit-line-clamp: 2 !important;
-				word-wrap: break-word !important;
-				padding: 0 10upx;
-				font-size: 26upx;
-				overflow: hidden !important;
+				font-size: 28upx;
+				.menu-icon{
+					width: 95upx;
+					height: 95upx;
+				}
 			}
 		}
 	}
-		
-
-
 </style>
