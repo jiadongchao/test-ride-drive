@@ -117,7 +117,55 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _api = __webpack_require__(/*! ../../static/const/api.js */ "../../../../uni-app/static/const/api.js"); //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _api = __webpack_require__(/*! ../../static/const/api.js */ "../../../../uni-app/static/const/api.js");
+var _qqmapWxJssdkMin = _interopRequireDefault(__webpack_require__(/*! ../../static/libs/qqmap-wx-jssdk.min.js */ "../../../../uni-app/static/libs/qqmap-wx-jssdk.min.js"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };} //
 //
 //
 //
@@ -135,11 +183,85 @@ var _api = __webpack_require__(/*! ../../static/const/api.js */ "../../../../uni
 //
 //
 //
-var _default = { data: function data() {return { scrollTop: 0, statu: 'aaa', carListDate: [], errSrc: __webpack_require__(/*! ../../static/img/noface.gif */ "../../../../uni-app/static/img/noface.gif") };}, onLoad: function onLoad() {this.getTestCars();}, methods: { //选取试驾车
-    carListClick: function carListClick(index, item) {console.log(this.carListDate[index]);}, //试驾车照片容错处理
-    setErrorImg: function setErrorImg(e) {console.error('image发生error事件，携带值为' + e.detail.errMsg);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = { data: function data() {return { city: '定位中...', indicatorDots: true, autoplay: true, interval: 2000, duration: 1000, circular: true, carListDate: [], errSrc: __webpack_require__(/*! ../../static/img/noface.gif */ "../../../../uni-app/static/img/noface.gif"), carImg: __webpack_require__(/*! ../../static/img/car.jpg */ "../../../../uni-app/static/img/car.jpg"), //测试图片
+      //carImg:require('../../static/img/svg/hot-car.svg'),//测试图片
+      menus: [{ name: "在售新车", icon: __webpack_require__(/*! ../../static/img/svg/car.svg */ "../../../../uni-app/static/img/svg/car.svg") }, { name: "汽车保险", icon: __webpack_require__(/*! ../../static/img/svg/insurance.svg */ "../../../../uni-app/static/img/svg/insurance.svg") }, { name: "优选精品", icon: __webpack_require__(/*! ../../static/img/svg/collect.svg */ "../../../../uni-app/static/img/svg/collect.svg") }, { name: "优选精品", icon: __webpack_require__(/*! ../../static/img/svg/collect.svg */ "../../../../uni-app/static/img/svg/collect.svg") }, { name: "在售新车", icon: __webpack_require__(/*! ../../static/img/svg/car.svg */ "../../../../uni-app/static/img/svg/car.svg") }, { name: "汽车保险", icon: __webpack_require__(/*! ../../static/img/svg/insurance.svg */ "../../../../uni-app/static/img/svg/insurance.svg") }] };}, onLoad: function onLoad() {this.getLocation();this.getTestCars();}, methods: { //获取当前位置-并获取当前城市
+    getLocation: function getLocation() {var _this = this;var qqmapsdk = new _qqmapWxJssdkMin.default({ key: _api.QQKey });var location = {};uni.getLocation({ type: 'wgs84', success: function success(res) {location = { latitude: res.latitude, longitude: res.longitude }, console.log(location);formSubmit();} }); //根据坐标地址逆解析出当前所在城市
+      function formSubmit(e) {qqmapsdk.reverseGeocoder({ //位置坐标，默认获取当前位置，非必须参数
+          location: location, //get_poi: 1, //是否返回周边POI列表：1.返回；0不返回(默认),非必须参数
+          success: function success(res) {//成功后的回调
+            // console.log(res);
+            var res = res.result;_this.city = res.ad_info.city;},
+          fail: function fail(error) {
+            console.error(error);
+          },
+          complete: function complete(res) {
+            console.log(res);
+          } });
+
+      }
     },
-    getTestCars: function getTestCars() {var _this = this;
+
+
+    //选取试驾车
+    carListClick: function carListClick(index, item) {
+      console.log(this.carListDate[index]);
+    },
+    //试驾车照片容错处理
+    setErrorImg: function setErrorImg(e) {
+      console.error('image发生error事件，携带值为' + e.detail.errMsg);
+    },
+    getTestCars: function getTestCars() {var _this2 = this;
+      uni.showLoading({
+        title: '加载中' });
+
       uni.request({
         url: _api.carList, //仅为示例，并非真实接口地址。
         method: 'POST',
@@ -152,7 +274,8 @@ var _default = { data: function data() {return { scrollTop: 0, statu: 'aaa', car
         },
         success: function success(res) {
           console.log(res.data);
-          _this.carListDate = res.data.data; //请求接口的数据
+          uni.hideLoading();
+          _this2.carListDate = res.data.data; //请求接口的数据
         } });
 
     } } };exports.default = _default;

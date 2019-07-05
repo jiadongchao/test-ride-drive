@@ -6,7 +6,11 @@
 				"navigationBarTitleText": "魔比商城"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/category/category",
+            "style" : {}
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "魔比商城",
@@ -24,7 +28,7 @@
         "selectedIconPath": "static/img/tabBar/home-active.png",
         "text": "主页"
     },{
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/category/category",
         "iconPath": "static/img/tabBar/classify.png",
         "selectedIconPath": "static/img/tabBar/classify-active.png",
         "text": "分类"

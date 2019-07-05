@@ -24,107 +24,185 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.content .scroll-Y {
-  height: 200rpx;
+.content {
+  height: auto;
 }
-.content .scroll-view-item {
-  height: 300rpx;
+.content .header {
+    padding: 0 20rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    font-size: 13px;
+    height: 100rpx;
+    background: #ffffff;
 }
-.content .carList .warp-car-ul {
-  overflow: hidden;
-  padding-bottom: 60rpx;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-wrap: wrap;
-      -ms-flex-wrap: wrap;
-          flex-wrap: wrap;
-  margin: 0 24rpx;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.content .header .search-input {
+      height: 62rpx;
+      max-width: 620rpx;
+      -webkit-border-radius: 31rpx;
+              border-radius: 31rpx;
+      background: #efefef;
+      padding: 0 20rpx;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+          -ms-flex: 1;
+              flex: 1;
+      margin-left: 20rpx;
 }
-.content .carList .warp-car-ul-li {
-  width: 345rpx;
-  float: left;
-  text-align: center;
-  padding-bottom: 20rpx;
-  margin-bottom: 10rpx;
-  background-color: #fff;
-  -webkit-border-radius: 10rpx;
-          border-radius: 10rpx;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  border: 3rpx solid transparent;
-  overflow: hidden;
+.content .swiperWrap {
+    height: 385rpx;
 }
-.content .carList .warp-car-ul-li:nth-child(2n+1) {
-  border: 3rpx solid transparent;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin-right: 6rpx;
+.content .swiperWrap .swiper-item {
+      height: 100%;
+      width: 100%;
 }
-.content .carList .warp-car-ul-li:nth-child(2n+2) {
-  border: 3rpx solid transparent;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+.content .swiperWrap .swiper-item .car-img {
+        width: 100%;
 }
-.content .carList .warp-car-ul-li:active {
-  border: 3rpx solid #61A5FF;
+.content .menu-wrap {
+    background: #ffffff;
 }
-.content .carList .warp-car-ul-li.active {
-  border: 3rpx solid #61A5FF;
+.content .menu-wrap .menu-ul {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+          -ms-flex-align: center;
+              align-items: center;
+      height: auto;
+      -webkit-box-pack: start;
+      -webkit-justify-content: flex-start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
 }
-.content .carList .car-img-wrap {
-  width: 100%;
-  height: 345rpx;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
-  overflow: hidden;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  background-size: 100%;
+.content .menu-wrap .menu-ul .menu-li {
+        text-align: center;
+        font-size: 28rpx;
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 33%;
+            -ms-flex: 0 0 33%;
+                flex: 0 0 33%;
+        height: 200rpx;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-align-content: center;
+            -ms-flex-line-pack: center;
+                align-content: center;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+        padding-top: 40rpx;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
 }
-.content .carList .car-img {
-  width: 100%;
-  pointer-events: none;
-  vertical-align: sub;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-      -ms-flex-align: center;
-          align-items: center;
+.content .menu-wrap .menu-ul .menu-li .menu-icon {
+          width: 95rpx;
+          height: 95rpx;
 }
-.content .carList .des-model-wrap {
-  display: table-cell;
-  height: 90rpx;
-  vertical-align: middle;
-  text-align: left;
-  color: #444d66;
-  width: 100%;
-  overflow: hidden;
+.content .goods-wrap {
+    background: #ffffff;
+    margin-top: 20rpx;
 }
-.content .carList .warp-car-ul-span {
-  width: 100%;
-  line-height: 1.7 !important;
-  -webkit-box-sizing: border-box !important;
-          box-sizing: border-box !important;
-  display: -webkit-box !important;
-  word-break: break-all !important;
-  -webkit-box-orient: vertical !important;
-  -o-text-overflow: ellipsis !important;
-     text-overflow: ellipsis !important;
-  -webkit-line-clamp: 2 !important;
-  word-wrap: break-word !important;
-  padding: 0 10rpx;
-  font-size: 26rpx;
-  overflow: hidden !important;
+.content .goods-wrap .group .group-head {
+      height: 100rpx;
+      border-bottom: 1px solid #f8f8f8;
+      vertical-align: middle;
+      text-align: center;
+      line-height: 100rpx;
+      font-size: 14px;
+      position: relative;
+}
+.content .goods-wrap .group .group-head .group-icon {
+        width: 45rpx;
+        height: 45rpx;
+        vertical-align: middle;
+        margin-right: 10rpx;
+}
+.content .goods-wrap .group .group-head .group-title {
+        vertical-align: middle;
+}
+.content .goods-wrap .group .group-head .group-more {
+        position: absolute;
+        right: 0;
+        vertical-align: middle;
+        float: right;
+        margin-right: 30rpx;
+        color: #828282;
+        font-size: 13px;
+}
+.content .goods-wrap .group .group-head .group-more .icon-you {
+          font-size: 12px;
+          margin-left: 5rpx;
+}
+.content .goods-wrap .group .goods-ul {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-wrap: wrap;
+          -ms-flex-wrap: wrap;
+              flex-wrap: wrap;
+      padding: 10rpx;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      -webkit-box-pack: justify;
+      -webkit-justify-content: space-between;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+}
+.content .goods-wrap .group .goods-ul .goods-li {
+        -webkit-box-flex: 0;
+        -webkit-flex: 0 0 50%;
+            -ms-flex: 0 0 50%;
+                flex: 0 0 50%;
+        overflow: hidden;
+        margin-bottom: 18rpx;
+        padding: 10rpx;
+        -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+        vertical-align: baseline;
+}
+.content .goods-wrap .group .goods-ul .goods-li .li-content {
+          -webkit-box-sizing: border-box;
+                  box-sizing: border-box;
+          -webkit-box-shadow: 0 0 2rpx 1rpx rgba(0, 0, 0, 0.1);
+                  box-shadow: 0 0 2rpx 1rpx rgba(0, 0, 0, 0.1);
+          -webkit-border-radius: 10rpx;
+                  border-radius: 10rpx;
+          overflow: hidden;
+          height: 100%;
+          padding-bottom: 30rpx;
+}
+.content .goods-wrap .group .goods-ul .goods-li .li-content .goods-img {
+            width: 100%;
+            height: 345rpx;
+}
+.content .goods-wrap .group .goods-ul .goods-li .li-content .goods-type {
+            font-size: 14px;
+            padding: 0 20rpx;
+}
+.content .goods-wrap .group .goods-ul .goods-li .li-content .goods-price {
+            font-size: 14px;
+            padding: 0 20rpx;
+            color: red;
 }
 

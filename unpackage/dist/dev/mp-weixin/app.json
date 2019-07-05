@@ -1,19 +1,39 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/category/category"
   ],
   "subPackages": [],
   "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "魔比商城",
+    "navigationBarBackgroundColor": "#000000",
+    "backgroundColor": "#f8f8f8"
+  },
+  "tabBar": {
+    "color": "#282828",
+    "selectedColor": "#3388ff",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/img/tabBar/home.png",
+        "selectedIconPath": "static/img/tabBar/home-active.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "iconPath": "static/img/tabBar/classify.png",
+        "selectedIconPath": "static/img/tabBar/classify-active.png",
+        "text": "分类"
+      }
+    ]
   },
   "permission": {
     "scope.userLocation": {
       "desc": "为了获取更好的体验，请授权获取您的位置"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap.json"
+  "usingComponents": {}
 }

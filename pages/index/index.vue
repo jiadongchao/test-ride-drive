@@ -15,19 +15,49 @@
 			</swiper>
 		</view>
 		<!--中间菜单 -->
-		<view>
+		<view class="menu-wrap">
 			<ul class="menu-ul">
 				<li class='menu-li' v-for="(item,index) in menus" :key="item.index" @click="menuClick(index)">
-					<view>
+					<span>
 						<image class="menu-icon" :src="item.icon" v-if="item.icon" mode="aspectFit"></image>
-						<view>{{item.name}}</view>
-					</view>
+						<p >{{item.name}}</p>
+					</span>
 				</li>
 			</ul>
 		</view>
 		<!-- goods -->
-		<view class="goosWrap">
-			
+		<view class="goods-wrap">
+			<view class="group">
+				<view class="group-head">
+					<image class="group-icon" src="../../static/img/svg/hot-car.svg"  mode="aspectFit"></image>
+					<span class="group-title">热销车型</span>
+					<span class="group-more">更多<span class="iconfont icon-you"></span></span>
+				</view>
+				<ul class="goods-ul">
+					<li class="goods-li">
+						<view class="li-content">
+							<image class="goods-img" :src="carImg"  mode="aspectFit"></image>
+							<view class="goods-type">奥迪19 A3 Sportback 1.4T 7档自动 进取型 国产-0513-6911-1</view>
+							<view class="goods-price">优惠价<span>￥288，000.00</span></view>
+						</view>
+					</li>
+					<li class="goods-li">
+						<view class="li-content">
+							<image class="goods-img" :src="carImg"  mode="aspectFit"></image>
+							<view class="goods-type">奥迪19 A3 Sportback 1.4T 7档自动 进取型 国产-0513-6911-1</view>
+							<view class="goods-price">优惠价<span>￥288，000.00</span></view>
+						</view>
+					</li>
+					<li class="goods-li">
+						<view class="li-content">
+							<image class="goods-img" :src="carImg"  mode="aspectFit"></image>
+							<view class="goods-type">奥迪19 A3 Sportback 1.4T 7档自动 进取型 国产-0513-6911-1</view>
+							<view class="goods-price">优惠价<span>￥288，000.00</span></view>
+						</view>
+					</li>
+				</ul>
+				
+			</view>
 		</view>
 		
 	</view>
@@ -39,26 +69,37 @@
 	export default {
 		data() {
 			return {
-				city:"",
+				city:'定位中...',
 				indicatorDots: true,
-				autoplay: false,
+				autoplay: true,
 				interval: 2000,
 				duration: 1000,
 				circular:true,
 				carListDate:[],
 				errSrc:require('../../static/img/noface.gif'),
 				carImg:require('../../static/img/car.jpg'),//测试图片
+				//carImg:require('../../static/img/svg/hot-car.svg'),//测试图片
 				
 				menus:[
 					{
 						name:"在售新车",
-						icon:require('../../static/img/icon-menu/car.png'),
+						icon:require('../../static/img/svg/car.svg'),
 					},{
 						name:"汽车保险",
-						icon:require('../../static/img/icon-menu/insurance.png'),
+						icon:require('../../static/img/svg/insurance.svg'),
 					},{
 						name:"优选精品",
-						icon:require('../../static/img/icon-menu/googs.png'),
+						icon:require('../../static/img/svg/collect.svg'),
+					},{
+						name:"优选精品",
+						icon:require('../../static/img/svg/collect.svg'),
+					},
+					{
+						name:"在售新车",
+						icon:require('../../static/img/svg/car.svg'),
+					},{
+						name:"汽车保险",
+						icon:require('../../static/img/svg/insurance.svg'),
 					},
 				]
 				
@@ -87,7 +128,6 @@
 								 formSubmit()
 						}
 				});
-				
 				//根据坐标地址逆解析出当前所在城市
 				function formSubmit(e){
 					qqmapsdk.reverseGeocoder({
@@ -145,13 +185,15 @@
 
 <style lang="scss">
 	.content {
+		height: auto;
 		.header{
 			padding: 0 20upx;
 			display: flex;
 			align-items:center;
 			justify-content: space-between;
-			font-size:25upx; 
+			font-size:13px; 
 			height: 100upx;
+			background: #ffffff;
 			.search-input{
 				height: 62upx;
 				max-width: 620upx;
@@ -173,17 +215,102 @@
 				}
 			}
 		}
-		.menu-ul{
-			display: flex;
-			align-items:center;
-			height: 200upx;
-			justify-content: space-around;
-			.menu-li{
-				text-align: center;
-				font-size: 28upx;
-				.menu-icon{
-					width: 95upx;
-					height: 95upx;
+		.menu-wrap{
+			background: #ffffff;
+			.menu-ul{
+				display: flex;
+				align-items:center;
+				height: auto;
+				justify-content: flex-start;
+				flex-wrap:wrap; 
+				.menu-li{
+					text-align: center;
+					font-size: 28upx;
+					flex: 0 0 33%;
+					height: 200upx;
+					display: flex;
+					align-content: center;
+					justify-content: center;
+					padding-top:40upx;
+					box-sizing: border-box;
+					.menu-icon{
+						width: 95upx;
+						height: 95upx;
+					}
+				}
+			}
+		}
+		.goods-wrap{
+			background: #ffffff;
+			margin-top: 20upx;
+			.group{
+				.group-head{
+					height: 100upx;
+					border-bottom: 1px solid #f8f8f8;
+					vertical-align: middle;
+					text-align: center;
+					line-height: 100upx;
+					font-size: 14px;
+					position: relative;
+					.group-icon{
+						width: 45upx;
+						height: 45upx;
+						vertical-align: middle;
+						margin-right: 10upx;
+					}
+					.group-title{
+						vertical-align: middle;
+					}
+					.group-more{
+						position: absolute;
+						right: 0;
+						vertical-align: middle;
+						float: right;
+						margin-right: 30upx;
+						color: #828282;
+						font-size: 13px;
+						.icon-you{
+							font-size:12px; 
+							margin-left: 5upx;
+						}
+					}
+				}
+				.goods-ul{
+					display: flex;
+					flex-wrap:wrap; 
+					padding: 10upx;
+					box-sizing: border-box;
+					justify-content:space-between;
+					.goods-li{
+						flex: 0 0 50%;
+						overflow: hidden;
+						margin-bottom: 18upx;
+						padding: 10upx;
+						box-sizing: border-box;
+						vertical-align: baseline;
+						.li-content{
+							box-sizing: border-box;
+							box-shadow: 0 0 2upx 1upx rgba(0,0,0,.1);
+							border-radius:10upx;
+							overflow: hidden;
+							height: 100%;
+							padding-bottom: 30upx;
+							.goods-img{
+								width: 100%;
+								height: 345upx;
+							}
+							.goods-type{
+								font-size:14px;
+								padding: 0 20upx;
+							}
+							.goods-price{
+								font-size:14px;
+								padding: 0 20upx;
+								color: red;
+							}
+						}
+
+					}
 				}
 			}
 		}
