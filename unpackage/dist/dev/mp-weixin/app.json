@@ -35,5 +35,6 @@
       "desc": "为了获取更好的体验，请授权获取您的位置"
     }
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
 }

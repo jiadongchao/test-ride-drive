@@ -3,22 +3,20 @@
 		<!-- header -->
 		<view class="header"><input class="search-input" confirm-type="search" placeholder="请输入商品名称" /></view>
 		<view class="category">
-			<view class="nav">
-				<view class="nav-left">
-					<scroll-view scroll-y :style="'height:'+height+'px'">
-						<view class="nav-left-item" @click="categoryClickMain(item,index)" :key="index" :class="index==categoryActive?'active':''" v-for="(item,index) in categoryList">
-							{{item.NAME}}
-						</view>
-					</scroll-view>
-				</view>
-				<view class="nav-right">
-					<scroll-view scroll-y :scroll-top="scrollTop" @scroll="scroll" :style="'height:'+height+'px'" scroll-with-animation >
-						<view :id="index==0?'first':''" class="nav-right-item" v-for="item in subCategoryList" :key="item">
-							<image :src="item.LOGO" />
-							<view>{{item.NAME}}</view>
-						</view>
-					</scroll-view>
-				</view>
+			<view class="nav-left">
+				<scroll-view class="scollView" scroll-y >
+					<view class="nav-left-item" @click="categoryClickMain(item,index)" :key="index" :class="index==categoryActive?'active':''" v-for="(item,index) in categoryList">
+						{{item.NAME}}
+					</view>
+				</scroll-view>
+			</view>
+			<view class="nav-right">
+				<scroll-view class="scollView"  scroll-y :scroll-top="scrollTop" @scroll="scroll"  scroll-with-animation >
+					<view :id="index==0?'first':''" class="nav-right-item" v-for="item in subCategoryList" :key="item">
+						<image class="rightImg" :src="item.LOGO" />
+						<view>{{item.NAME}}</view>
+					</view>
+				</scroll-view>
 			</view>
 		</view>
 	</view>
@@ -67,57 +65,12 @@
 	}
 </script>
 
-<style scoped>
-	.nav {
-		display: flex;
-		width: 100%;
-	}
-	.nav-left {
-		width: 30%;
-	}
-	.nav-left-item {
-		height: 100upx;
-		border-right: solid 1upx #ddd;
-		border-bottom: solid 1upx #ddd;
-		font-size: 30upx;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	.nav-right {
-		width: 70%;
-		padding-top: 22upx;
-	}
-
-	.nav-right-item {
-		width: 28%;
-		height: 220upx;
-		float: left;
-		text-align: center;
-		padding: 11upx;
-		font-size: 28upx;
-	}
-	.nav-right-item image{
-		width: 100upx;
-		height: 100upx;
-	}
-	.active {
-		color: #F24544;
-	}
-	.category {
-		padding-top: 100upx;
-		border-top: solid 1upx #ddd;
-		width: 100%;
-		height: 100%;
-		box-sizing: border-box;
-		overflow: hidden;
-	}
-</style>
-
 <style lang="scss">
 	.content{
 		position: relative;
 		.header{
+			width:100%;
+			box-sizing:border-box;
 			padding: 0 20upx;
 			display: flex;
 			align-items:center;
@@ -137,5 +90,49 @@
 				flex:1;
 			}
 		}
+		.category {
+			padding-top: 100upx;
+			border-top: solid 1upx #ddd;
+			width: 100%;
+			height: 100vh;
+			box-sizing: border-box;
+			overflow: hidden;
+			display: flex;
+			.nav-left {
+				width: 30%;
+				.nav-left-item {
+					height: 100upx;
+					border-right: solid 1upx #ddd;
+					border-bottom: solid 1upx #ddd;
+					font-size: 30upx;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				}
+			}
+			.nav-right {
+				width: 70%;
+				padding-top: 22upx;
+				.nav-right-item {
+					width: 28%;
+					height: 220upx;
+					float: left;
+					text-align: center;
+					padding: 11upx;
+					font-size: 28upx;
+					.rightImg{
+						width: 100upx;
+						height: 100upx;
+					}
+				}
+			}
+			.scollView{
+				height: 100%;
+			}
+			.active {
+				color: #F24544;
+			}
+		}
+
 	}
 </style>
